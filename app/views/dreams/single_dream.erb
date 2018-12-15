@@ -10,34 +10,35 @@
   </div>
 <% end %>
 
-  <div class="box">
-    <h3><%= @dream.description %></h3>
+<div class="box">
+  <h3><%= @dream.description %></h3>
 
-    <% if @dream.user_id == current_user.id %>
-    <a href="/dreams/edit/<%=@dream.id%>"class="button is-warning">Change Dream</a>
-    <% end %>
+  <% if @dream.user_id == current_user.id %>
+    <a href="/dreams/edit/<%=@dream.id%>" class="button is-warning">Change Dream</a>
+  <% end %>
+  <br>
+  <% if !@dream.image_link%>
+    <figure class="image">
+      <img src="https://via.placeholder.com/600x400?text=Please+set+a+dream+image">
+    </figure>
+  <% else %>
+    <figure class="image">
+      <img src="<%=@dream.image_link%>">
+    </figure>
     <br>
-    <% if !@dream.image_link%>
-      <figure class="image">
-        <img src="https://via.placeholder.com/600x400?text=Please+set+a+dream+image">
-      </figure>
-    <% else %>
-      <figure class="image">
-        <img src="<%=@dream.image_link%>">
-      </figure>
-      <br>
-    <p>Dreamed by: <%=user_name_by_id(@dream.user_id)%></p>
+    <p>Dreamed by:
+      <%=user_name_by_id(@dream.user_id)%></p>
 
+  </div>
+
+  <% @karmas.each do |karma| %>
+
+    <div class="box">
+      <p><%=user_name_by_id(karma.user_id)%>
+        wrote:</p>
+      <p><%=karma.karma_comment%></p>
     </div>
-
-    <% @karmas.each do |karma| %>
-
-      <div class="box">
-        <p><%=user_name_by_id(karma.user_id)%> wrote:</p>
-        <p><%=karma.karma_comment%></p>
-        </div>
-    <% end %>
-
+  <% end %>
 
   <form action="/karma/add/<%=@dream.id%>" method="POST">
     <div class="field">
@@ -49,4 +50,4 @@
       </div>
     </div>
   </form>
-  <% end %>
+<% end %>

@@ -1,6 +1,4 @@
 class DreamsController < ApplicationController
-
-
   get('/dreams/new') do
     if logged_in?
       erb :'dreams/new_dream'
@@ -13,13 +11,12 @@ class DreamsController < ApplicationController
   post('/dreams/new') do
     @dreams = []
     if logged_in?
-        @dream = Dream.new(:description => params[:description],
-        :image_link => params[:image_link],
-        :user_id => current_user.id
-      )
+      @dream = Dream.new(description: params[:description],
+                         image_link: params[:image_link],
+                         user_id: current_user.id)
       @dream.save
       @dreams << @dream
-      @message = "Dream created successfully"
+      @message = 'Dream created successfully'
       erb :'dreams/dream'
     else
       @message = 'You must be logged in to create a dream'
@@ -42,7 +39,7 @@ class DreamsController < ApplicationController
   get('/dreams/me') do
     if logged_in?
 
-      @dreams = Dream.where(:user_id => current_user.id)
+      @dreams = Dream.where(user_id: current_user.id)
 
       @user_string = "All your Dreams, #{current_user.first_name}"
 
@@ -56,7 +53,7 @@ class DreamsController < ApplicationController
   get('/dreams/:id') do
     if logged_in?
 
-      @karmas = Karma.where(:dream_id => params[:id])
+      @karmas = Karma.where(dream_id: params[:id])
       @dream = Dream.find_by_id(params[:id])
       erb :'dreams/single_dream'
     else
@@ -64,4 +61,15 @@ class DreamsController < ApplicationController
       erb :'users/login'
   end
   end
+
+  get('/dreams/edit/:id'){
+    @dream = Dream.find_by_id(params[:id])
+    if @dream.user_id == current_user.id
+      erb :'dreams/edit'
+    else
+      @message = "You are unable to edit someone elses dream!"
+      erb :error
+    end
+  }
+
 end # classend
