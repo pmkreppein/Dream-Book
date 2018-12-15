@@ -13,9 +13,33 @@
   <body>
   <section class="section">
     <div class="container">
-      <h1 class="title">
+    <div class="box">
+      <div class="columns">
+      <h1 class="title column">
         dreambook
       </h1>
+
+      <h2 class="column">
+        <% if logged_in? %>
+        <p>Welcome Back!</p>
+        <a href="/dreams/me" class="button is-success">My Dreams</a>
+        <% else %>
+        <p>Sign up or Sign In to the right ></p>
+        <% end %>
+      </h2>
+
+      <h2 class="column">
+        <% if logged_in? %>
+        <a href="/logout" class="button is-primary">Logout</a>
+        <% else %>
+        <a href="/users/create-account" class="button is-success">New Account</a>
+        <a href="/users/login" class="button is-link">Log In</a>
+        <% end %>
+      </h2>
+
+    </div>
+    </div>
+
 
 
         <%= yield %>
