@@ -40,13 +40,13 @@ class DreamsController < ApplicationController
   end
 
   get('/dreams/me') do
-    @dreams = []
     if logged_in?
 
       @dreams = Dream.where(:user_id => current_user.id)
 
       @user_string = "All your Dreams, #{current_user.first_name}"
-      erb :'dreams/dream'
+
+      erb :'dreams/me'
     else
       @message = 'You must be logged in to view dreams'
       erb :'users/login'
@@ -55,6 +55,8 @@ class DreamsController < ApplicationController
 
   get('/dreams/:id') do
     if logged_in?
+
+      @karmas = Karma.where(:dream_id => params[:id])
       @dream = Dream.find_by_id(params[:id])
       erb :'dreams/single_dream'
     else

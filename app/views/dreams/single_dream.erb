@@ -12,6 +12,11 @@
 
   <div class="box">
     <h3><%= @dream.description %></h3>
+
+    <% if @dream.user_id == current_user.id %>
+    <a href="/dreams/edit/<%=@dream.id%>"class="button is-warning">Change Dream</a>
+    <% end %>
+    <br>
     <% if !@dream.image_link%>
       <figure class="image">
         <img src="https://via.placeholder.com/600x400?text=Please+set+a+dream+image">
@@ -24,5 +29,24 @@
     <p>Dreamed by: <%=user_name_by_id(@dream.user_id)%></p>
 
     </div>
-  <form action="" method="POST"></form>
+
+    <% @karmas.each do |karma| %>
+
+      <div class="box">
+        <p><%=user_name_by_id(karma.user_id)%> wrote:</p>
+        <p><%=karma.karma_comment%></p>
+        </div>
+    <% end %>
+
+
+  <form action="/karma/add/<%=@dream.id%>" method="POST">
+    <div class="field">
+      <label class="label">Give Karma</label>
+      <div class="control">
+        <input class="input" name="karma" type="text" placeholder="Enter a message to send along with your karma">
+        <input type="submit" value="Give Karma" class="button is-link">
+
+      </div>
+    </div>
+  </form>
   <% end %>
