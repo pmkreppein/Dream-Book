@@ -11,22 +11,22 @@ class DreamsController < ApplicationController
   post('/dreams/new') do
     @dreams = []
     if params[:description] == '' || params[:image_link] == ''
-      @message = "Please fill form out in entirety to create dream"
+      @message = 'Please fill form out in entirety to create dream'
       erb :'dreams/new_dream'
     else if logged_in?
-      @dream = Dream.new(description: params[:description],
-                         image_link: params[:image_link],
-                         user_id: current_user.id)
-      @dream.save
-      @dreams << @dream
-      @message = 'Dream created successfully'
-      redirect to "/dreams/me"
-    else
-      @message = 'You must be logged in to create a dream'
-      erb :'users/login'
+           @dream = Dream.new(description: params[:description],
+                              image_link: params[:image_link],
+                              user_id: current_user.id)
+           @dream.save
+           @dreams << @dream
+           @message = 'Dream created successfully'
+           redirect to '/dreams/me'
+         else
+           @message = 'You must be logged in to create a dream'
+           erb :'users/login'
   end
   end
-end
+  end
 
   get('/dreams') do
     if logged_in?
@@ -79,24 +79,24 @@ end
   patch('/dreams/edit/:id') do
     if params[:description] == '' || params[:image_link] == ''
       redirect to "/dreams/edit/#{params[:id]}"
-  else if logged_in?
-      @dream = Dream.find_by_id(params[:id])
-      if @dream && @dream.user_id == current_user.id
-        if @dream.update(description: params[:description], image_link: params[:image_link])
-          redirect to "/dreams/#{@dream.id}"
-        else
-          redirect to "/dreams/edit/#{@dream.id}"
-        end
-      else
-        @message = 'You are unable to change another users dreams!'
-        erb :error
-      end
-    else
-      puts 'not logged on'
-      redirect to '/login'
+    else if logged_in?
+           @dream = Dream.find_by_id(params[:id])
+           if @dream && @dream.user_id == current_user.id
+             if @dream.update(description: params[:description], image_link: params[:image_link])
+               redirect to "/dreams/#{@dream.id}"
+             else
+               redirect to "/dreams/edit/#{@dream.id}"
+             end
+           else
+             @message = 'You are unable to change another users dreams!'
+             erb :error
+           end
+         else
+           puts 'not logged on'
+           redirect to '/login'
     end
   end
-end
+  end
 
   delete('/dreams/delete/:id') do
     if logged_in?

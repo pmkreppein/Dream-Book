@@ -29,10 +29,10 @@
 
   <div class="field is-grouped">
     <input type="submit" class="button is-link" value='Update'>
-</form>
-    <form action="/dreams/delete/<%=@dream.id%>" method="POST">
-      <input id="hidden" type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete this Dream" class="button is-danger">
-    </form>
+  </form>
+  <form action="/dreams/delete/<%=@dream.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete this Dream" class="button is-danger">
+  </form>
 
-  </div>
+</div>
