@@ -1,0 +1,30 @@
+<%if @user_string%>
+  <div class="title">
+    <%=@user_string%>
+  </div>
+<% end %>
+
+<%if @message%>
+  <div class="notification is-info">
+    <%=@message%>
+  </div>
+<% end %>
+
+
+
+<% @dreams.each do |dream| %>
+
+  <div class="box">
+    <h3><%= dream.description %></h3>
+    <% if !dream.image_link%>
+      <figure class="image">
+        <img src="https://via.placeholder.com/600x400?text=Please+set+a+dream+image">
+      </figure>
+    <% else %>
+      <figure class="image">
+        <img src="<%=dream.image_link%>">
+      </figure>
+    </div>
+
+  <% end %>
+  <% end %>

@@ -1,0 +1,35 @@
+<form action="/dreams/new" method="POST">
+  <%if @message%>
+    <div class="notification is-info">
+      <%=@message%>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label class="label">Dream Descrition</label>
+    <div class="control has-icons-left">
+      <input class="input" name="description" type="text" placeholder="Enter the text of your dream, or a description of a life goal.">
+      <span class="icon is-small is-left">
+        <i class="far fa-lightbulb"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Image Link</label>
+    <div class="control has-icons-left">
+      <input class="input" name="image_link" type="text" placeholder="Pick an image to go along with this dream. " value="">
+      <span class="icon is-small is-left">
+        <i class="fas fa-image"></i>
+      </span>
+    </div>
+  </div>
+
+
+  <div class="field is-grouped">
+    <input type="submit" class="button is-link" value='Submit'>
+    <a href="/" class="button is-text">Cancel</a>
+
+  </div>
+
+</form>
