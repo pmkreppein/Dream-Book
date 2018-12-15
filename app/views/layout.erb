@@ -5,49 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dream Book</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
-
-
   <body>
-  <section class="section">
-    <div class="container">
-    <div class="box">
-      <div class="columns">
-      <h1 class="title column">
-        dreambook
-      </h1>
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <div class="columns">
+            <h1 class="title column">
+              dreambook
+            </h1>
 
-      <h2 class="column">
-        <% if logged_in? %>
-        <p>Welcome Back!</p>
-        <a href="/dreams/me" class="button is-success">My Dreams</a>
-        <% else %>
-        <p>Sign up or Sign In to the right ></p>
-        <% end %>
-      </h2>
+            <h2 class="column">
+              <% if logged_in? %>
+                <p>Welcome Back!</p>
+                <a href="/dreams/me" class="button is-success">My Dreams</a>
+              <% else %>
+                <p>Sign up or Sign In to the right ></p>
+              <% end %>
+            </h2>
 
-      <h2 class="column">
-        <% if logged_in? %>
-        <a href="/logout" class="button is-primary">Logout</a>
-        <% else %>
-        <a href="/users/create-account" class="button is-success">New Account</a>
-        <a href="/users/login" class="button is-link">Log In</a>
-        <% end %>
-      </h2>
+            <h2 class="column">
+              <% if logged_in? %>
+                <a href="/logout" class="button is-primary">Logout</a>
+              <% else %>
+                <a href="/users/create-account" class="button is-success">New Account</a>
+                <a href="/users/login" class="button is-link">Log In</a>
+              <% end %>
+            </h2>
 
-    </div>
-    </div>
-
-
+          </div>
+        </div>
 
         <%= yield %>
 
-    </div>
-  </section>
+      </div>
+    </section>
   </body>
-
-
 
 </html>

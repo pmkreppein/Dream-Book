@@ -1,49 +1,47 @@
 <form action="/users/create_account" method="POST">
-<div class="field">
-  <label class="label">First Name</label>
-  <div class="control">
-    <input class="input" name="first_name" type="text" placeholder="Enter your first name">
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Username</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" name="username" type="text" placeholder="Pick a username.  You'll use this to log in every time." value="">
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-
+  <div class="field">
+    <label class="label">First Name</label>
+    <div class="control">
+      <input class="input" name="first_name" type="text" placeholder="Enter your first name.  It won't be publically displayed.">
+    </div>
   </div>
 
-</div>
+  <div class="field">
+    <label class="label">Username</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" name="username" type="text" placeholder="Pick a username.  This will be how you are known across the site pubically. " value="">
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
 
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input " type="email" placeholder="Enter an email address" value="">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
+    </div>
 
   </div>
 
-</div>
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input " name="email" type="text" placeholder="Enter Email" value="">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+    </div>
+  </div>
 
-<div class="field">
-  <label class="label">Password</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input " name="password" type="password" placeholder="Pick a password" value="">
-    <span class="icon is-small is-left">
-      <i class="fas fa-key"></i>
-    </span>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input " name="password" type="password" placeholder="Pick a password" value="">
+      <span class="icon is-small is-left">
+        <i class="fas fa-key"></i>
+      </span>
+
+    </div>
+  </div>
+  <div class="field is-grouped">
+    <input type="submit" class="button is-link" value='Submit'>
+    <a href="/" class="button is-text">Cancel</a>
 
   </div>
-</div>
-<div class="field is-grouped">
-<input type="submit" class="button is-link" value='Submit'>
-<a href="/" class="button is-text">Cancel</a>
-
-</div>
 
 </form>
