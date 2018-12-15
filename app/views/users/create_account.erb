@@ -1,4 +1,10 @@
 <form action="/users/create_account" method="POST">
+  <%if @message%>
+    <div class="notification is-info">
+      <%=@message%>
+    </div>
+  <% end %>
+
   <div class="field">
     <label class="label">First Name</label>
     <div class="control">
