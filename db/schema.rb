@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20181214235712) do
   create_table "karmas", force: :cascade do |t|
     t.integer "user_id"
     t.integer "dream_id"
+    t.text    "karma_comment"
   end
 
   create_table "users", force: :cascade do |t|
