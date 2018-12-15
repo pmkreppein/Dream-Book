@@ -1,9 +1,11 @@
+<%if @message%>
+  <div class="notification is-info">
+    <%=@message%>
+  </div>
+<% end %>
+
 <form action="/dreams/edit/<%=@dream.id%>" method="POST">
-  <%if @message%>
-    <div class="notification is-info">
-      <%=@message%>
-    </div>
-  <% end %>
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
 
   <div class="field">
     <label class="label">Dream Descrition</label>
@@ -18,18 +20,19 @@
   <div class="field">
     <label class="label">Image Link</label>
     <div class="control has-icons-left">
-      <input class="input" name="image_link" type="text" value="<%=@dream.image_link%>" value="">
+      <input class="input" name="image_link" type="text" value="<%=@dream.image_link%>">
       <span class="icon is-small is-left">
         <i class="fas fa-image"></i>
       </span>
     </div>
   </div>
 
-
   <div class="field is-grouped">
     <input type="submit" class="button is-link" value='Update'>
-    <a href="/dreams/delete/<%=@dream.id%>" class="button is-danger">Delete this Dream</a>
+</form>
+    <form action="/dreams/delete/<%=@dream.id%>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete this Dream" class="button is-danger">
+    </form>
 
   </div>
-
-</form>

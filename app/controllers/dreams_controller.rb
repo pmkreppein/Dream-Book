@@ -5,24 +5,28 @@ class DreamsController < ApplicationController
     else
       @message = 'You must be logged in to create a dream'
       erb :'users/login'
-  end
+    end
   end
 
   post('/dreams/new') do
     @dreams = []
-    if logged_in?
+    if params[:description] == '' || params[:image_link] == ''
+      @message = "Please fill form out in entirety to create dream"
+      erb :'dreams/new_dream'
+    else if logged_in?
       @dream = Dream.new(description: params[:description],
                          image_link: params[:image_link],
                          user_id: current_user.id)
       @dream.save
       @dreams << @dream
       @message = 'Dream created successfully'
-      erb :'dreams/dream'
+      redirect to "/dreams/me"
     else
       @message = 'You must be logged in to create a dream'
       erb :'users/login'
   end
   end
+end
 
   get('/dreams') do
     if logged_in?
@@ -62,14 +66,50 @@ class DreamsController < ApplicationController
   end
   end
 
-  get('/dreams/edit/:id'){
+  get('/dreams/edit/:id') do
     @dream = Dream.find_by_id(params[:id])
     if @dream.user_id == current_user.id
       erb :'dreams/edit'
     else
-      @message = "You are unable to edit someone elses dream!"
+      @message = 'You are unable to edit someone elses dream!'
       erb :error
     end
-  }
+  end
 
+  patch('/dreams/edit/:id') do
+    if params[:description] == '' || params[:image_link] == ''
+      redirect to "/dreams/edit/#{params[:id]}"
+  else if logged_in?
+      @dream = Dream.find_by_id(params[:id])
+      if @dream && @dream.user_id == current_user.id
+        if @dream.update(description: params[:description], image_link: params[:image_link])
+          redirect to "/dreams/#{@dream.id}"
+        else
+          redirect to "/dreams/edit/#{@dream.id}"
+        end
+      else
+        @message = 'You are unable to change another users dreams!'
+        erb :error
+      end
+    else
+      puts 'not logged on'
+      redirect to '/login'
+    end
+  end
+end
+
+  delete('/dreams/delete/:id') do
+    if logged_in?
+      @dream = Dream.find_by_id(params[:id])
+
+      if @dream && @dream.user_id == current_user.id
+        @dream.delete
+        redirect to '/'
+      else
+        erb :error
+    end
+    else
+      redirect to '/login'
+    end
+  end
 end # classend
