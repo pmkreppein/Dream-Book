@@ -53,9 +53,10 @@ class DreamsController < ApplicationController
   end
   end
 
-  get('/dreams/members/:username') do
+  get('/dreams/:id') do
     if logged_in?
-      erb :'dreams/me'
+      @dream = Dream.find_by_id(params[:id])
+      erb :'dreams/single_dream'
     else
       @message = 'You must be logged in to create a dream'
       erb :'users/login'

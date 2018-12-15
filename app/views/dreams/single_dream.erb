@@ -10,24 +10,19 @@
   </div>
 <% end %>
 
-
-
-<% @dreams.each do |dream| %>
-
   <div class="box">
-    <a href="dreams/<%=dream.id%>"><h3><%= dream.description %></h3></a>
-    <% if !dream.image_link%>
+    <h3><%= @dream.description %></h3>
+    <% if !@dream.image_link%>
       <figure class="image">
         <img src="https://via.placeholder.com/600x400?text=Please+set+a+dream+image">
       </figure>
     <% else %>
       <figure class="image">
-        <img src="<%=dream.image_link%>">
+        <img src="<%=@dream.image_link%>">
       </figure>
       <br>
-    <p>Dreamed by: <%=user_name_by_id(dream.user_id)%></p>
+    <p>Dreamed by: <%=user_name_by_id(@dream.user_id)%></p>
 
     </div>
-
-  <% end %>
+  <form action="" method="POST"></form>
   <% end %>
