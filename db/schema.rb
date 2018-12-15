@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20181214235712) do
   create_table "dreams", force: :cascade do |t|
     t.text     "description"
     t.integer  "user_id"
+    t.text     "image_link"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
