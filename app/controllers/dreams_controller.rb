@@ -29,8 +29,9 @@ class DreamsController < ApplicationController
 
   get('/dreams') do
     if logged_in?
-      @dreams = Dream.all(:user_id => current_user.id)
+      @dreams = Dream.all
 
+      @user_string = "Everyone's Dreams"
       erb :'dreams/dream'
     else
       @message = 'You must be logged in to view dreams'
