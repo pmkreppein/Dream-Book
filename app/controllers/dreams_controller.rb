@@ -62,14 +62,14 @@ class DreamsController < ApplicationController
   patch('/dreams/:id/edit') do
     redirect_if_not_logged_in('users/login')
     if params[:description] == '' || params[:image_link] == ''
-      redirect to "/dreams/edit/#{params[:id]}"
+      redirect to "/dreams/#{params[:id]}/edit"
     else
       @dream = Dream.find_by_id(params[:id])
       if @dream && @dream.user_id == current_user.id
         if @dream.update(description: params[:description], image_link: params[:image_link])
           redirect to "/dreams/#{@dream.id}"
         else
-          redirect to "/dreams/edit/#{@dream.id}"
+          redirect to "/dreams/#{@dream.id}/edit"
         end
       else
         @message = 'You are unable to change another users dreams!'
