@@ -14,7 +14,7 @@
   <h3><%= @dream.description %></h3>
 
   <% if @dream.user_id == current_user.id %>
-    <a href="/dreams/edit/<%=@dream.id%>" class="button is-warning">Change Dream</a>
+    <a href="/dreams/<%=@dream.id%>/edit" class="button is-warning">Change Dream</a>
   <% end %>
   <br>
   <% if !@dream.image_link%>
