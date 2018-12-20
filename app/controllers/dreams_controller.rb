@@ -4,7 +4,7 @@ class DreamsController < ApplicationController
     erb :'dreams/new_dream'
   end
 
-  post('/dreams/new') do
+  post('/dreams') do
     redirect_if_not_logged_in('users/login')
 
     if params[:description] == '' || params[:image_link] == ''
@@ -59,7 +59,7 @@ class DreamsController < ApplicationController
     end
   end
 
-  patch('/dreams/:id/edit') do
+  patch('/dreams/:id') do
     redirect_if_not_logged_in('users/login')
     if params[:description] == '' || params[:image_link] == ''
       redirect to "/dreams/#{params[:id]}/edit"
@@ -79,7 +79,7 @@ class DreamsController < ApplicationController
   end
   end
 
-  delete('/dreams/:id/delete') do
+  delete('/dreams/:id') do
     redirect_if_not_logged_in('users/login')
     @dream = Dream.find_by_id(params[:id])
 
